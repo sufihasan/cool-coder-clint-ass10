@@ -1,12 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
-
+import Footer from "../Shared/Footer/Footer";
 
 const Login = () => {
-    const { loginUser } = useContext(AuthContext);
+    const { loginUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+
     const handleLogin = e => {
         e.preventDefault();
 
@@ -18,11 +22,38 @@ const Login = () => {
         loginUser(email, password)
             .then(result => {
                 console.log(result.user);
+                navigate(location.state ? location.state : '/');
+                e.target.reset();
+
             })
             .catch(error => {
                 console.error(error)
             })
     }
+
+    const handleGoogleSignin = () => {
+
+        signInWithGoogle()
+            .then(result => {
+                console.log(result.user);
+                navigate(location.state ? location.state : '/');
+            })
+            .catch(error => console.error(error))
+    }
+
+
+    const handleGithubSignIn = () => {
+        signInWithGithub()
+            .then(result => {
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+                navigate(location.state ? location.state : '/');
+            })
+            .catch(error => {
+                console.log('error', error);
+            })
+    }
+
     return (
         <div>
             <Navbar></Navbar>
@@ -57,16 +88,18 @@ const Login = () => {
             </div>
             <div className="divider w-1/2 m-auto mt-3">OR</div>
             <div className="mx-auto w-1/2 text-center text-xl">
-                <button className="btn w-full my-4">
+                <button onClick={handleGoogleSignin} className="btn w-full my-4">
                     <FaGoogle className="text-2xl"></FaGoogle>
                     Google
                 </button>
-                <button className="btn w-full">
+                <button onClick={handleGithubSignIn} className="btn w-full">
                     <FaGithub className="text-2xl"></FaGithub>
                     Github
                 </button>
 
             </div>
+
+            <Footer></Footer>
         </div>
     );
 };

@@ -3,6 +3,7 @@ import Navbar from "../Shared/Navbar/Navbar";
 import { AuthContext } from "../../providers/AuthProviders";
 import { useContext } from "react";
 import { updateProfile } from "firebase/auth";
+import Footer from "../Shared/Footer/Footer";
 
 
 const Register = () => {
@@ -46,7 +47,7 @@ const Register = () => {
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
-                        <input type="text" name="name" placeholder="Name" className="input input-bordered" required />
+                        <input type="text" name="name" placeholder="Full Name" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -76,6 +77,8 @@ const Register = () => {
                 <p className="text-center mt-3">Already have an account please <Link
                     className="text-blue-600 font-bold" to="/login">Login</Link></p>
             </div>
+
+            <Footer></Footer>
         </div>
     );
 };
