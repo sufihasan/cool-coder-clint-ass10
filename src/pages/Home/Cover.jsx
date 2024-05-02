@@ -1,18 +1,9 @@
-import { useEffect, useState } from "react";
+
 
 
 const Cover = () => {
-    const [courses, setCourses] = useState();
-
-    useEffect(() => {
-        fetch('http://localhost:5000/courses')
-            .then(res => res.json())
-            .then(data => setCourses(data))
-    }, [])
 
 
-
-    console.log('hasan djdd', courses);
 
     return (
         <div className="carousel w-full">

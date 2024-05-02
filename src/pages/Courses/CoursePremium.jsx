@@ -9,7 +9,7 @@ const CoursePremium = () => {
     const [course, setCourses] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:5000/courses/${id}`)
+        fetch(`https://cool-coder-sarver-ass10.vercel.app/courses/${id}`)
             .then(res => res.json())
             .then(data => setCourses(data))
     }, [id])

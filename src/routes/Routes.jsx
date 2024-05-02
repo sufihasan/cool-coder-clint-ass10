@@ -8,6 +8,7 @@ import CourseDetails from "../pages/Courses/CourseDetails";
 import CoursePremium from "../pages/Courses/CoursePremium";
 import PrivateRoutes from "./PrivateRoutes";
 import Blog from "../pages/Blog/Blog";
+import { object } from "prop-types";
 
 
 const router = createBrowserRouter([
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
             {
                 path: '/courses',
                 element: <Courses></Courses>,
-                loader: () => fetch('http://localhost:5000/courses')
+                loader: () => fetch('https://cool-coder-sarver-ass10.vercel.app/courses',)
             },
             {
                 path: '/courses/:id',
